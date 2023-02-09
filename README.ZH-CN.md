@@ -1,20 +1,23 @@
 # go-echarts-snapshot
 
-A Go module for converting echarts html file into image
+一个用来将echarts html文件转换成图片的Go模块
 
-### Preparation
-1.Install nodejs and configure environment variables
+### 准备工作
 
-2.Follow [https://pptr.dev/](https://pptr.dev/) to install puppeteer
+1.安装nodejs并配置环境变量
 
-### Installation
+2.按照[https://pptr.dev/](https://pptr.dev/)安装puppeteer
+
+### 安装
+
 ```shell
 # go.mod
 
 require github.com/cricketbrother/go-echarts-snapshot
 ```
 
-### Usage
+### 用法
+
 ```golang
 package main
 
