@@ -38,7 +38,7 @@ const puppeteer = require(puppeteerPath);
         await page.setViewport({width: width, height: height});
     }
     await page.goto(src);
-    const element = await page.$('canvas');
+    const element = await page.$(renderer);
     await element.screenshot({path: dst})
     await browser.close();
 })();
