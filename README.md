@@ -1,1 +1,1 @@
-# GoEchartsSnapshot
+# go-echarts-snapshot
