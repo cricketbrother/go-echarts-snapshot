@@ -1,8 +1,8 @@
 package snapshot
 
 import (
-	"fmt"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strconv"
 )
@@ -51,12 +51,21 @@ func SetConfig(puppeteerPath string, browserPath string, renderer string, width 
 //
 // dst: 图片路径
 func Make(conf *Config, src string, dst string) error {
-	fmt.Println(runtime.Caller(0))
+	_, file, _, _ := runtime.Caller(0)
 	var cmd *exec.Cmd
 	if conf.Width == 0 && conf.Height == 0 {
-		cmd = exec.Command("node", "snapshot.js", conf.PuppeteerPath, conf.BrowserPath, conf.Renderer, src, dst)
+		cmd = exec.Command(
+			"node",
+			filepath.Join(filepath.Dir(file), "snapshot.js"),
+			conf.PuppeteerPath, conf.BrowserPath, conf.Renderer, src, dst,
+		)
 	} else {
-		cmd = exec.Command("node", "snapshot.js", conf.PuppeteerPath, conf.BrowserPath, conf.Renderer, src, dst, strconv.Itoa(conf.Width), strconv.Itoa(conf.Height))
+		cmd = exec.Command(
+			"node",
+			filepath.Join(filepath.Dir(file), "snapshot.js"),
+			conf.PuppeteerPath, conf.BrowserPath, conf.Renderer, src, dst,
+			strconv.Itoa(conf.Width), strconv.Itoa(conf.Height),
+		)
 	}
 	if err := cmd.Run(); err != nil {
 		return err
